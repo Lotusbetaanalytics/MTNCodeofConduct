@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.15.0",
+    "libraryName": "mtn-code-of-conduct",
+    "libraryId": "2756b51f-cbda-40df-8da4-e90f2512738e",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "mtn-code-of-conduct",
+    "solutionShortDescription": "mtn-code-of-conduct description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

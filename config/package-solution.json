@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "mtn-code-of-conduct-client-side-solution",
+    "id": "2756b51f-cbda-40df-8da4-e90f2512738e",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.15.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "mtn-code-of-conduct description"
+      },
+      "longDescription": {
+        "default": "mtn-code-of-conduct description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "mtn-code-of-conduct Feature",
+        "description": "The feature that activates elements of the mtn-code-of-conduct solution.",
+        "id": "46e63668-ca4b-41b6-92f9-07268cf6159e",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/mtn-code-of-conduct.sppkg"
+  }
+}
