@@ -1,4 +1,4 @@
-# mtn-code-of-conduct
+# MtnCodeOfConduct
 
 ## Summary
 
