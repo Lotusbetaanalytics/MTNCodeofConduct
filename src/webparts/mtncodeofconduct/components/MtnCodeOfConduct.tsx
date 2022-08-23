@@ -7,6 +7,9 @@ import { sp } from "@pnp/sp";
 import * as jQuery from "jquery";
 import { AdminDashboard, HomeScreen } from "./screens";
 import EmployeeRegisterForm from "./screens/EmployeeRegisterForm";
+import AdminRegistrationForm from "./screens/AdminRegistrationForm";
+import CompalianceStatus from "./screens/ComplianceStatus";
+import Roles from "./screens/Config";
 
 // import EditRaterSection2 from "./screens/ConfirmationForm/EditRaterComments/EditRater1to3/EditRaterSection2";
 
@@ -35,6 +38,23 @@ export default class MtnCodeOfConduct extends React.Component<
               path="/admin/pledge/dashboard"
               exact
               component={AdminDashboard}
+            />
+            <Route
+              path="/admin/conduct/pledge"
+              exact
+              render={(props) => (
+                <AdminRegistrationForm context={this.props.context} />
+              )}
+            />
+            <Route
+              path="/admin/compliance/status"
+              exact
+              component={CompalianceStatus}
+            />
+            <Route
+              path="/admin/config/division"
+              exact
+              render={(props) => <Roles context={this.props.context} />}
             />
           </Switch>
         </HashRouter>

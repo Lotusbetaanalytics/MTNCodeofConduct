@@ -8,11 +8,12 @@ import {
   AiOutlineFileDone,
 } from "react-icons/ai";
 import { BsViewList } from "react-icons/bs";
-import { GrCompliance } from "react-icons/gr";
+import { GrCompliance, GrConfigure } from "react-icons/gr";
 const Navigation = ({
   dashboard = "",
-  pending = "",
-  complete = "",
+  status = "",
+  report = "",
+  config = "",
   init = "",
 }) => {
   const [data, setData] = React.useState({ DisplayName: "", Email: "" });
@@ -37,25 +38,31 @@ const Navigation = ({
       <div className={styles.mtn__url}>
         <ul>
           <li className={styles[dashboard]}>
-            <Link to={`/admin/dashboard`}>
+            <Link to={`/admin/pledge/dashboard`}>
               <AiOutlineAppstore />
               Dashboard
             </Link>
           </li>
           <li className={styles[init]}>
-            <Link to={`/admin/confirmation`}>
+            <Link to={`/admin/conduct/pledge`}>
               <BsViewList />
               Code of Conduct Pledge
             </Link>
           </li>
-          <li className={styles[pending]}>
-            <Link to={`/admin/pending`}>
+          <li className={styles[status]}>
+            <Link to={`/admin/compliance/status`}>
               <GrCompliance />
               Compliance Status
             </Link>
           </li>
-          <li className={styles[complete]}>
-            <Link to={`/admin/completed`}>
+          <li className={styles[config]}>
+            <Link to={`/admin/config/division`}>
+              <GrConfigure />
+              Configure
+            </Link>
+          </li>
+          <li className={styles[report]}>
+            <Link to={`/admin/reportlog`}>
               <AiOutlineFileDone />
               Report Log
             </Link>

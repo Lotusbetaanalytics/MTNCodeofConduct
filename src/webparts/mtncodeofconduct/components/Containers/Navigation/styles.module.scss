@@ -56,7 +56,8 @@
   ul li:hover {
     background: whitesmoke;
     color: #000000;
-    border-left: 5px solid lightslategray;
+    padding: 1.5rem 3rem;
+    border-left: 7px solid lightslategray;
   }
   ul li a {
     display: flex;
@@ -79,12 +80,12 @@
     margin-top: 0.1rem;
   }
   .active {
-    background: whitesmoke;
+    background: white;
     color: black;
-    padding: 0rem 3rem;
-    border-left: 5px solid lightslategray;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    padding: 1.5rem 3rem;
+    border-left: 7px solid lightslategray;
+    // border-top-left-radius: 5px;
+    // border-bottom-left-radius: 5px;
     a {
       color: #000000;
     }

@@ -25,7 +25,7 @@ const AdminDashboard = () => {
         <div className="contentPage">
           <div className="dashboard">
             <div className="header__title">
-              <h3>Hello!!!</h3>
+              <h3>Hello !!!</h3>
               <h3>{data.DisplayName}</h3>
             </div>
             {loading ? (
