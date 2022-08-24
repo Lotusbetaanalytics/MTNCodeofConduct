@@ -16,7 +16,7 @@ import MaterialTable from "material-table";
 import { sp } from "@pnp/sp";
 import swal from "sweetalert";
 
-const Division = () => {
+const AdminLocation = () => {
   // Helpers
   const history = useHistory();
 
@@ -31,13 +31,11 @@ const Division = () => {
   const string: IType = "string";
 
   const [columns, setColumns] = React.useState([
-    { title: "Division", field: "Title", type: "string" as const },
-    { title: "Department", field: "Department", type: "string" as const },
+    { title: "Location", field: "Title", type: "string" as const },
   ]);
 
   const [data, setData] = React.useState([]);
-  const [Divisions, setDivisions] = React.useState("");
-  const [Department, setDepartment] = React.useState("");
+  const [Location, setLocation] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [edit, setEdit] = React.useState(false);
@@ -45,11 +43,10 @@ const Division = () => {
 
   React.useEffect(() => {
     sp.web.lists
-      .getByTitle(`Division`)
+      .getByTitle(`Location`)
       .items.get()
       .then((res) => {
         setData(res);
-        console.log(data);
       });
   }, []);
 
@@ -57,24 +54,22 @@ const Division = () => {
   const menu = [
     { name: "Admin", url: "/admin/config/roles/add" },
     { name: "Roles", url: "/admin/config/roles" },
-    { name: "Location", url: "/admin/config/location" },
-    { name: "Division", url: "/admin/config/division", active: true },
+    { name: "Location", url: "/admin/config/location", active: true },
+    { name: "Division", url: "/admin/config/division" },
   ];
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("i am here");
     sp.web.lists
-      .getByTitle("Division")
+      .getByTitle("Location")
       .items.add({
-        Title: Divisions,
-        Department: Department,
+        Title: Location,
       })
       .then((res) => {
         setOpen(false);
-        swal("Success", "Division added Successfully", "success");
+        swal("Success", "Location added Successfully", "success");
         sp.web.lists
-          .getByTitle(`Division`)
+          .getByTitle(`Location`)
           .items.get()
           .then((res) => {
             setData(res);
@@ -89,17 +84,16 @@ const Division = () => {
   const editHandler = (e) => {
     e.preventDefault();
     sp.web.lists
-      .getByTitle("Division")
+      .getByTitle("Location")
       .items.getById(id)
       .update({
-        Title: Divisions,
-        Department: Department,
+        Title: Location,
       })
       .then((res) => {
         setOpen(false);
-        swal("Success", "Division Edited Successfully", "success");
+        swal("Success", "Location Edited Successfully", "success");
         sp.web.lists
-          .getByTitle(`Division`)
+          .getByTitle(`Location`)
           .items.get()
           .then((res) => {
             setData(res);
@@ -113,13 +107,13 @@ const Division = () => {
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure you want to delete")) {
       sp.web.lists
-        .getByTitle("Division")
+        .getByTitle("Location")
         .items.getById(id)
         .delete()
         .then((res) => {
-          swal("Success", "Division has been deleted", "success");
+          swal("Success", "Location has been deleted", "success");
           sp.web.lists
-            .getByTitle(`Division`)
+            .getByTitle(`Location`)
             .items.get()
             .then((res) => {
               setData(res);
@@ -138,7 +132,7 @@ const Division = () => {
       <div className="contentsRight">
         <div className="contentPage">
           <div className="dashboard">
-            <TitleHeader title="Division" />
+            <TitleHeader title="Location" />
             <MenuBar menu={menu} />
             <div className="btnContainer right">
               <button
@@ -146,7 +140,7 @@ const Division = () => {
                 className="mtn__btns mtn__blue"
                 type="button"
               >
-                Add Division
+                Add Location
               </button>
             </div>
             <MaterialTable
@@ -186,8 +180,7 @@ const Division = () => {
                     setEdit(true);
                     setOpen(true);
                     setID(rowData.ID);
-                    setDivisions(rowData.Title);
-                    setDepartment(rowData.Department);
+                    setLocation(rowData.Title);
                   },
                 },
                 {
@@ -213,7 +206,7 @@ const Division = () => {
             />
             <Modal
               isVisible={open}
-              title="Division"
+              title="Location"
               size="lg"
               content={
                 loading ? (
@@ -221,16 +214,9 @@ const Division = () => {
                 ) : (
                   <div className="mtn__InputFlex">
                     <Input
-                      title="Division"
-                      value={Divisions}
-                      onChange={(e) => setDivisions(e.target.value)}
-                      type="text"
-                      size="mtn__adult"
-                    />
-                    <Input
-                      title="Department"
-                      value={Department}
-                      onChange={(e) => setDepartment(e.target.value)}
+                      title="Location"
+                      value={Location}
+                      onChange={(e) => setLocation(e.target.value)}
                       type="text"
                       size="mtn__adult"
                     />
@@ -240,7 +226,7 @@ const Division = () => {
                       type="button"
                       className="mtn__btn mtn__yellow"
                     >
-                      {edit ? "Edit Division" : "Add Division"}
+                      {edit ? "Edit Location" : "Add Location"}
                     </button>
                   </div>
                 )
@@ -255,4 +241,4 @@ const Division = () => {
   );
 };
 
-export default Division;
+export default AdminLocation;

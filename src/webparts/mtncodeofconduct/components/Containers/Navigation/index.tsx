@@ -56,13 +56,13 @@ const Navigation = ({
             </Link>
           </li>
           <li className={styles[config]}>
-            <Link to={`/admin/config/division`}>
+            <Link to={`/admin/config/roles/add`}>
               <GrConfigure />
               Configure
             </Link>
           </li>
           <li className={styles[report]}>
-            <Link to={`/admin/reportlog`}>
+            <Link to={`/admin/report/log`}>
               <AiOutlineFileDone />
               Report Log
             </Link>

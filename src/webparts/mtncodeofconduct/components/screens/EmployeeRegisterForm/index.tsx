@@ -138,6 +138,30 @@ const EmployeeRegisterForm = ({ context }) => {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    // generateSerial();
+    sp.web.lists
+      .getByTitle(`Location`)
+      .items.get()
+      .then((res) => {
+        setLocations(res);
+        console.log(res);
+      });
+    sp.web.lists
+      .getByTitle(`Division`)
+      .items.get()
+      .then((res) => {
+        setDivisions(res);
+        console.log(res);
+      });
+  }, []);
+
+  const divisionHandler = (e) => {
+    setDivision(e.target.value);
+    const filter = divisions.filter((x) => x.Title === e.target.value);
+    setDepartments(filter);
+  };
+
   return (
     <div>
       <div>
@@ -174,6 +198,16 @@ const EmployeeRegisterForm = ({ context }) => {
                 required={true}
                 readOnly={true}
               />
+
+              <Select
+                onChange={(e) => setDivision(e.target.value)}
+                title="Division"
+                value={division}
+                required={true}
+                options={divisions}
+                filterOption="Title"
+                filter={true}
+              />
               <Select
                 onChange={(e) => setDepartment(e.target.value)}
                 title="Department"
@@ -181,15 +215,6 @@ const EmployeeRegisterForm = ({ context }) => {
                 required={true}
                 options={departments}
                 filterOption="Department"
-                filter={true}
-              />
-              <Select
-                onChange={(e) => setDivision(e.target.value)}
-                title="Division"
-                value={division}
-                required={true}
-                options={divisions}
-                filterOption="Division"
                 filter={true}
               />
               <Input
@@ -407,6 +432,23 @@ const EmployeeRegisterForm = ({ context }) => {
                           <br />
                         </ul>
                       </h5>
+                      <form onSubmit={submitHandler}>
+                        <Input
+                          title="I have read and agreed to abiide to the Terms and Conditions to the MTN Group's Code of Conduct and Pledge."
+                          value={employeeEmail}
+                          onChange={(e) => setEmployeeEmail(e.target.value)}
+                          type="checkbox"
+                          required={true}
+                        />
+                        <div className="btnContainer">
+                          <button
+                            type="submit"
+                            className="mtn__btn mtn__yellow"
+                          >
+                            Proceed
+                          </button>
+                        </div>
+                      </form>
                     </div>
                   }
                   onClose={() => setOpenModal(false)}

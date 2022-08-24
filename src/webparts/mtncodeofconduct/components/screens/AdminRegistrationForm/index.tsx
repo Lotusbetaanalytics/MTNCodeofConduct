@@ -140,6 +140,30 @@ const AdminRegistrationForm = ({ context }) => {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    // generateSerial();
+    sp.web.lists
+      .getByTitle(`Location`)
+      .items.get()
+      .then((res) => {
+        setLocations(res);
+        console.log(res);
+      });
+    sp.web.lists
+      .getByTitle(`Division`)
+      .items.get()
+      .then((res) => {
+        setDivisions(res);
+        console.log(res);
+      });
+  }, []);
+
+  const divisionHandler = (e) => {
+    setDivision(e.target.value);
+    const filter = divisions.filter((x) => x.Title === e.target.value);
+    setDepartments(filter);
+  };
+
   return (
     <div className="appContainer">
       <Navigation init={`active`} />
@@ -180,6 +204,16 @@ const AdminRegistrationForm = ({ context }) => {
                       required={true}
                       readOnly={true}
                     />
+
+                    <Select
+                      onChange={divisionHandler}
+                      title="Division"
+                      value={division}
+                      required={true}
+                      options={divisions}
+                      filterOption="Title"
+                      filter={true}
+                    />
                     <Select
                       onChange={(e) => setDepartment(e.target.value)}
                       title="Department"
@@ -187,15 +221,6 @@ const AdminRegistrationForm = ({ context }) => {
                       required={true}
                       options={departments}
                       filterOption="Department"
-                      filter={true}
-                    />
-                    <Select
-                      onChange={(e) => setDivision(e.target.value)}
-                      title="Division"
-                      value={division}
-                      required={true}
-                      options={divisions}
-                      filterOption="Division"
                       filter={true}
                     />
                     <Input

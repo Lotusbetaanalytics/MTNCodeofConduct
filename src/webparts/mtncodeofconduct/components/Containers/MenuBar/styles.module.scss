@@ -1,28 +1,31 @@
 .menubar {
-    display: flex;
-    padding: .5rem;
-    overflow: hidden;
+  display: flex;
+  padding: 0.5rem;
+  overflow: hidden;
 }
 
 .menu {
-    display: flex;
-    padding: 1rem 3rem;
-    justify-content: center;
-    align-items: center;
-    background: whitesmoke;
-    text-decoration: none;
-    color: black;
+  display: flex;
+  padding: 1rem 3rem;
+  justify-content: center;
+  align-items: center;
+  background: whitesmoke;
+  text-decoration: none;
+  color: black;
+  border-radius: 10px;
 }
 
 .menu:hover {
-    background: rgba(255, 196, 35, 1);
-    border-bottom: 2px solid black;
-    color: black;
-    transform: scale(1.1);
+  background: rgba(255, 196, 35, 1);
+  border-bottom: 3px solid gray;
+  color: black;
+  border-radius: 10px;
+  transform: scale(1.1);
 }
 
 .active {
-    background: rgba(255, 196, 35, 1);
-    border-bottom: 2px solid black;
-    color: black;
+  background: rgba(255, 196, 35, 1);
+  border-bottom: 3px solid gray;
+  border-radius: 10px;
+  color: black;
 }

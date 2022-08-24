@@ -3,25 +3,30 @@ import * as React from "react";
 import { Navigation, TitleHeader } from "../../Containers";
 import "@pnp/graph/users";
 
-const CompalianceStatus = () => {
+const ReportLog = () => {
   const [data, setData] = React.useState([]);
   const [columns, setColumns] = React.useState([
     { title: "Employee ID", field: "EmployeeID", type: "string" as const },
-    { title: "Divisions", field: "Division", type: "string" as const },
     {
-      title: "No. of Submitted Code of Conduct",
-      field: "PledgeStatus",
+      title: "Employee Full Name",
+      field: "EmployeeName",
+      type: "string" as const,
+    },
+    {
+      title: "Employee HCMs ID",
+      field: "HCMID",
       type: "string" as const,
     },
   ]);
+
   return (
     <div className="appContainer">
-      <Navigation status={`active`} />
+      <Navigation report={`active`} />
       <div className="contentsRight">
         <div className="contentPage">
           <div className="dashboard">
             <div className="header__title">
-              <TitleHeader title="Division" />
+              <TitleHeader title="Report Log" />
             </div>
             <div>
               <MaterialTable
@@ -90,4 +95,4 @@ const CompalianceStatus = () => {
   );
 };
 
-export default CompalianceStatus;
+export default ReportLog;

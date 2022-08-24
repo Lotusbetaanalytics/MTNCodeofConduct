@@ -10,6 +10,7 @@ import {
   MenuBar,
   Spinner,
   Modal,
+  TitleHeader,
 } from "../../Containers";
 import MaterialTable from "material-table";
 import { sp } from "@pnp/sp";
@@ -67,10 +68,10 @@ const Roles = ({ context }) => {
 
   // Menubar Items
   const menu = [
-    { name: "Admin", url: "/admin/config", active: true },
-    { name: "Roles", url: "/admin/roles" },
-    { name: "Location", url: "/admin/location" },
-    { name: "Division", url: "/admin/division" },
+    { name: "Admin", url: "/admin/config/roles/add", active: true },
+    { name: "Roles", url: "/admin/config/roles" },
+    { name: "Location", url: "/admin/config/location" },
+    { name: "Division", url: "/admin/config/division" },
   ];
 
   const submitHandler = (e) => {
@@ -154,127 +155,132 @@ const Roles = ({ context }) => {
     <div className="appContainer">
       <Navigation config={`active`} />
       <div className="contentsRight">
-        <AdminHeader title="Roles" />
-        <MenuBar menu={menu} />
-        <div className="btnContainer right">
-          <button
-            onClick={openHandler}
-            className="mtn__btns mtn__blue"
-            type="button"
-          >
-            Add Admin
-          </button>
-        </div>
-        <MaterialTable
-          title=""
-          columns={columns}
-          data={data}
-          options={{
-            exportButton: true,
-            actionsCellStyle: {
-              backgroundColor: "none",
-              color: "#FF00dd",
-            },
-            actionsColumnIndex: -1,
-
-            headerStyle: {
-              backgroundColor: "#FFCC00",
-              color: "black",
-            },
-            rowStyle: {
-              fontSize: 13,
-            },
-          }}
-          style={{
-            boxShadow: "none",
-            width: "100%",
-            background: "none",
-            fontSize: "13px",
-          }}
-          // icons={{Add: () => 'Add Row'}}
-          actions={[
-            {
-              icon: "visibility",
-              iconProps: { style: { fontSize: "11px", color: "gold" } },
-              tooltip: "Edit",
-
-              onClick: (event, rowData) => {
-                setEdit(true);
-                setOpen(true);
-                setID(rowData.ID);
-                setName(rowData.Title);
-                setRole(rowData.Role);
-              },
-            },
-            {
-              icon: "visibility",
-              iconProps: { style: { fontSize: "11px", color: "gold" } },
-              tooltip: "Delete",
-
-              onClick: (event, rowData) => {
-                deleteHandler(rowData.ID);
-              },
-            },
-          ]}
-          components={{
-            Action: (props) => (
+        <div className="contentPage">
+          <div className="dashboard">
+            <TitleHeader title="Admin Roles" />
+            <MenuBar menu={menu} />
+            <div className="btnContainer right">
               <button
-                onClick={(event) => props.action.onClick(event, props.data)}
-                className="mtn__btn_table mtn__black"
+                onClick={openHandler}
+                className="mtn__btns mtn__blue"
+                type="button"
               >
-                {props.action.tooltip}
+                Add Admin
               </button>
-            ),
-          }}
-        />
-        <Modal
-          isVisible={open}
-          title="Admin"
-          size="lg"
-          content={
-            loading ? (
-              <Spinner />
-            ) : (
-              <div className="mtn__InputFlex">
-                <div className={`mtn__InputContainer mtn__adult`}>
-                  <PeoplePicker
-                    context={context}
-                    titleText="Employee Name"
-                    personSelectionLimit={1}
-                    groupName="" // Leave this blank in case you want to filter from all users
-                    showtooltip={true}
-                    required={true}
-                    disabled={false}
-                    onChange={getPeoplePickerItems}
-                    showHiddenInUI={false}
-                    principalTypes={[PrincipalType.User]}
-                    resolveDelay={1000}
-                  />
-                </div>
+            </div>
 
-                <Select
-                  title="Role"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  size="mtn__adult"
-                  options={roles}
-                  filter={true}
-                  filterOption="Title"
-                />
+            <MaterialTable
+              title=""
+              columns={columns}
+              data={data}
+              options={{
+                exportButton: true,
+                actionsCellStyle: {
+                  backgroundColor: "none",
+                  color: "#FF00dd",
+                },
+                actionsColumnIndex: -1,
 
-                <button
-                  onClick={edit ? editHandler : submitHandler}
-                  type="button"
-                  className="mtn__btn mtn__yellow"
-                >
-                  {edit ? "Edit Admin" : "Add Admin"}
-                </button>
-              </div>
-            )
-          }
-          onClose={() => setOpen(false)}
-          footer=""
-        />
+                headerStyle: {
+                  backgroundColor: "#FFCC00",
+                  color: "black",
+                },
+                rowStyle: {
+                  fontSize: 13,
+                },
+              }}
+              style={{
+                boxShadow: "none",
+                width: "100%",
+                background: "none",
+                fontSize: "13px",
+              }}
+              // icons={{Add: () => 'Add Row'}}
+              actions={[
+                {
+                  icon: "visibility",
+                  iconProps: { style: { fontSize: "11px", color: "gold" } },
+                  tooltip: "Edit",
+
+                  onClick: (event, rowData) => {
+                    setEdit(true);
+                    setOpen(true);
+                    setID(rowData.ID);
+                    setName(rowData.Title);
+                    setRole(rowData.Role);
+                  },
+                },
+                {
+                  icon: "visibility",
+                  iconProps: { style: { fontSize: "11px", color: "gold" } },
+                  tooltip: "Delete",
+
+                  onClick: (event, rowData) => {
+                    deleteHandler(rowData.ID);
+                  },
+                },
+              ]}
+              components={{
+                Action: (props) => (
+                  <button
+                    onClick={(event) => props.action.onClick(event, props.data)}
+                    className="mtn__btn_table mtn__black"
+                  >
+                    {props.action.tooltip}
+                  </button>
+                ),
+              }}
+            />
+            <Modal
+              isVisible={open}
+              title="Admin"
+              size="lg"
+              content={
+                loading ? (
+                  <Spinner />
+                ) : (
+                  <div className="mtn__InputFlex">
+                    <div className={`mtn__InputContainer mtn__adult`}>
+                      <PeoplePicker
+                        context={context}
+                        titleText="Employee Name"
+                        personSelectionLimit={1}
+                        groupName="" // Leave this blank in case you want to filter from all users
+                        showtooltip={true}
+                        required={true}
+                        disabled={false}
+                        onChange={getPeoplePickerItems}
+                        showHiddenInUI={false}
+                        principalTypes={[PrincipalType.User]}
+                        resolveDelay={1000}
+                      />
+                    </div>
+
+                    <Select
+                      title="Role"
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                      size="mtn__adult"
+                      options={roles}
+                      filter={true}
+                      filterOption="Title"
+                    />
+
+                    <button
+                      onClick={edit ? editHandler : submitHandler}
+                      type="button"
+                      className="mtn__btn mtn__yellow"
+                    >
+                      {edit ? "Edit Admin" : "Add Admin"}
+                    </button>
+                  </div>
+                )
+              }
+              onClose={() => setOpen(false)}
+              footer=""
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
