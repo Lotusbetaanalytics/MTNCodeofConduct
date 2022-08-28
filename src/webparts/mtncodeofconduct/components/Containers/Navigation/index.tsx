@@ -43,12 +43,12 @@ const Navigation = ({
               Dashboard
             </Link>
           </li>
-          <li className={styles[init]}>
+          {/* <li className={styles[init]}>
             <Link to={`/admin/conduct/pledge`}>
               <BsViewList />
               Code of Conduct Pledge
             </Link>
-          </li>
+          </li> */}
           <li className={styles[status]}>
             <Link to={`/admin/compliance/status`}>
               <GrCompliance />

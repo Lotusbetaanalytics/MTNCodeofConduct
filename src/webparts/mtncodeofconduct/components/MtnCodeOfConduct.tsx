@@ -5,7 +5,12 @@ import { escape } from "@microsoft/sp-lodash-subset";
 import { Route, Switch, HashRouter } from "react-router-dom";
 import { sp } from "@pnp/sp";
 import * as jQuery from "jquery";
-import { AdminDashboard, HomeScreen, ReportLog } from "./screens";
+import {
+  AdminDashboard,
+  HomeScreen,
+  ReportLog,
+  ViewDivisionDetails,
+} from "./screens";
 import EmployeeRegisterForm from "./screens/EmployeeRegisterForm";
 import AdminRegistrationForm from "./screens/AdminRegistrationForm";
 import CompalianceStatus from "./screens/ComplianceStatus";
@@ -13,6 +18,7 @@ import Roles from "./screens/Config";
 import Role from "./screens/Config/Role";
 import AdminLocation from "./screens/Config/AdminLocation";
 import Division from "./screens/Config/Division";
+import ViewDivisionIDs from "./screens/ViewDivisionIDs";
 
 // import EditRaterSection2 from "./screens/ConfirmationForm/EditRaterComments/EditRater1to3/EditRaterSection2";
 
@@ -67,6 +73,16 @@ export default class MtnCodeOfConduct extends React.Component<
             />
             <Route path="/admin/config/division" exact component={Division} />
             <Route path="/admin/report/log" exact component={ReportLog} />
+            <Route
+              path="/admin/viewdivisions/:id"
+              exact
+              component={ViewDivisionDetails}
+            />
+            <Route
+              path="/admin/viewdivisions/list/:id"
+              exact
+              component={ViewDivisionIDs}
+            />
           </Switch>
         </HashRouter>
       </>

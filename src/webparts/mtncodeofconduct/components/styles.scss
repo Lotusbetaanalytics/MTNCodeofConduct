@@ -280,6 +280,8 @@
 }
 .mtn__black {
   background: #000;
+  margin-left: 10px;
+  // transform: scale(1.1);
 }
 .mtn__yellow {
   background: rgba(255, 196, 35, 1);
@@ -292,5 +294,5 @@
   box-shadow: 0px 4px 25px 4px rgba(0, 0, 0, 0.05);
   font-weight: bold;
   border-radius: 10px;
-  transition: scale 1.5;
+  transform: scale(1.1);
 }

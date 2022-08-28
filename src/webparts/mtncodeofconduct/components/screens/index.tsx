@@ -8,3 +8,5 @@ export { default as AdminLocation } from "./Config/AdminLocation";
 export { default as Role } from "./Config/Role";
 export { default as Division } from "./Config/Division";
 export { default as ReportLog } from "./ReportLog";
+export { default as ViewDivisionDetails } from "./ViewDivisionDetails";
+export { default as ViewDivisionIDs } from "./ViewDivisionIDs";

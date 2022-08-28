@@ -32,7 +32,6 @@ const AdminRegistrationForm = ({ context }) => {
   const [pledgeTime, setPledgeTime] = React.useState("");
   const [department, setDepartment] = React.useState("");
   const [division, setDivision] = React.useState("");
-  const [unit, setUnit] = React.useState("");
   const [jobLevel, setJobLevel] = React.useState("");
   const [location, setLocation] = React.useState("");
   const [jobTitle, setJobTitle] = React.useState("");
@@ -42,9 +41,7 @@ const AdminRegistrationForm = ({ context }) => {
   const [loading, setLoading] = React.useState(false);
   const [departments, setDepartments] = React.useState([]);
   const [divisions, setDivisions] = React.useState([]);
-  const [units, setUnits] = React.useState([]);
   const [locations, setLocations] = React.useState([]);
-  const [staffWitness, setStaffWitness] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
 
@@ -59,14 +56,14 @@ const AdminRegistrationForm = ({ context }) => {
         EmployeeName: employeeFullName,
         EmployeeEmail: employeeEmail,
         PledgeDate: pledgeDate,
-        PledgeTime: pledgeTime,
+        PledgeTimes: pledgeTime,
         PledgeWitness: pledgeWitness,
         Division: division,
         JobTitle: jobTitle,
         JobLevel: jobLevel,
         Department: department,
-        Unit: unit,
-        HCMID: HCMID,
+        PledgeStatus: "Completed",
+        HCMIDs: HCMID,
         Location: location,
       })
       .then((res) => {
@@ -75,7 +72,7 @@ const AdminRegistrationForm = ({ context }) => {
           "Thank you, your Pledge has been successfully submited",
           "success"
         );
-        history.push("/admin/conduct/pledge");
+        history.push("/admin/pledge/dashboard");
         // setOpen(false);
         setLoading(false);
       })
@@ -88,10 +85,13 @@ const AdminRegistrationForm = ({ context }) => {
 
   function getPeoplePickerItems(items: any[]) {
     const staff = items[0].secondaryText;
+    setEmployeeEmail(items[0].secondaryText);
+    setPledgeWitness(items[0].text);
     context.spHttpClient.get(
       `https://mtncloud.sharepoint.com/sites/MTNNigeriaComplianceUniverse/testenv/_api/lists/GetByTitle('CURRENT HCM STAFF LIST')/items?$filter=EMAIL_ADDRESS eq '${staff}'`,
       SPHttpClient.configurations.v1
     );
+    console.log(items);
   }
 
   React.useEffect(() => {
@@ -126,7 +126,6 @@ const AdminRegistrationForm = ({ context }) => {
     setPledgeTime("");
     setDepartment("");
     setDivision("");
-    setUnit("");
     setJobLevel("");
     setLocation("");
     setJobTitle("");
@@ -245,15 +244,7 @@ const AdminRegistrationForm = ({ context }) => {
                       required={true}
                       options={Helpers.level}
                     />
-                    <Select
-                      onChange={(e) => setUnit(e.target.value)}
-                      title="Unit"
-                      value={unit}
-                      required={true}
-                      filterOption="Unit"
-                      filter={true}
-                      options={units}
-                    />
+
                     <Input
                       title="Employee Phone Number"
                       value={phone}
@@ -335,7 +326,7 @@ const AdminRegistrationForm = ({ context }) => {
                         footer=""
                       />
                       <button
-                        type="submit"
+                        type="button"
                         className={styles.btnSubmit}
                         // onClick={approveHandler}
                         onClick={submitModalHandler}
